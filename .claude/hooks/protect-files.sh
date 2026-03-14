@@ -24,6 +24,11 @@ PROTECTED_PATTERNS=(
   "settings.json"
 )
 
+# NOTE: LES data repo path protection will be added by /onboard
+# once the user provides the LES data path. The /onboard skill
+# will add a full-path pattern here to prevent any writes to
+# the LES data directory.
+
 BASENAME=$(basename "$FILE")
 for PATTERN in "${PROTECTED_PATTERNS[@]}"; do
   if [[ "$BASENAME" == "$PATTERN" ]]; then
