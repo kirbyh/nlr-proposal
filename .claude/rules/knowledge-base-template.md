@@ -6,7 +6,7 @@ paths:
   - "explorations/**"
 ---
 
-# Project Knowledge Base: [YOUR PROJECT TITLE]
+# Project Knowledge Base: KH Wake Modeling
 
 Read this before creating or modifying any manuscript content, figures, or analysis scripts.
 
@@ -14,65 +14,61 @@ Read this before creating or modifying any manuscript content, figures, or analy
 
 ## Notation Registry
 
-<!-- Fill in your field's notation conventions -->
+<!-- [ASK USER] Fill in via /onboard — wind energy / wake modeling notation -->
 
 | Rule | Convention | Example | Anti-Pattern |
 |------|-----------|---------|-------------|
-| [SYMBOL 1] | [CONVENTION] | [EXAMPLE] | [WHAT NOT TO DO] |
-| [SYMBOL 2] | [CONVENTION] | [EXAMPLE] | [WHAT NOT TO DO] |
+| [ASK USER] | | | |
 
 ---
 
 ## Symbol Reference
 
-<!-- Fill in all symbols used in your manuscript -->
+<!-- [ASK USER] Fill in all symbols used in your manuscript -->
 
 | Symbol | Meaning | Units |
 |--------|---------|-------|
-| [SYM] | [MEANING] | [UNITS] |
+| [ASK USER] | | |
 
 ---
 
 ## Key Models
 
-<!-- Fill in the models/equations used in your work -->
+<!-- [ASK USER] Fill in the wake models / LES codes used -->
 
 | Model | Equation | Notes |
 |-------|---------|-------|
-| [MODEL 1] | [EQUATION] | [NOTES] |
-| [MODEL 2] | [EQUATION] | [NOTES] |
+| [ASK USER] | | |
 
 ---
 
 ## Design Principles
 
-<!-- Fill in your field's design principles for figures, analysis, etc. -->
+<!-- [ASK USER] Fill in your field's design principles for figures, analysis, etc. -->
 
 | Principle | Rationale |
 |-----------|----------|
-| [PRINCIPLE 1] | [RATIONALE] |
-| [PRINCIPLE 2] | [RATIONALE] |
+| [ASK USER] | |
 
 ---
 
 ## Anti-Patterns (Do Not Do This)
 
-<!-- Fill in common mistakes in your field -->
+<!-- [ASK USER] Fill in common mistakes in your field -->
 
 | Anti-Pattern | Why It's Wrong | Correct Approach |
 |-------------|----------------|-----------------|
-| [ANTI-PATTERN 1] | [WHY] | [CORRECT] |
-| [ANTI-PATTERN 2] | [WHY] | [CORRECT] |
+| [ASK USER] | | |
 
 ---
 
-## Python Code Conventions (scripts/)
+## Code Conventions (scripts/)
 
 | Convention | Rule |
 |------------|------|
 | Path handling | Use `pathlib.Path` or `os.path.join`; no hardcoded absolute paths |
-| Data import | Excel files via `pandas.read_excel`; CSV via `pandas.read_csv` |
-| Reproducibility | Set `numpy.random.seed()` if any stochastic operations |
+| Data import | Use appropriate library for file format (pandas, xarray, etc.) |
+| Reproducibility | Set random seeds if any stochastic operations |
 | Output | Save processed data to `quality_reports/data_verification/`; save figures to `Figures/` |
-| Comments | Explain WHY (units conversions, model assumptions), not WHAT |
+| Comments | Explain WHY (unit conversions, model assumptions), not WHAT |
 | Line length | ≤100 characters except documented formulas |

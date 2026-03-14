@@ -1,8 +1,10 @@
 ---
-# Always-on: loads every session (no paths filter)
+paths:
+  - "manuscript/**/*.md"
+  - "Bibliography_base.bib"
 ---
 
-# Manuscript Conventions: [YOUR PROJECT TITLE]
+# Manuscript Conventions: KH Wake Modeling
 
 These rules apply to all work on this manuscript project. Read before any manuscript editing, data handling, or analysis task.
 
@@ -13,13 +15,14 @@ These rules apply to all work on this manuscript project. Read before any manusc
 The **Markdown section files in `manuscript/`** are the authoritative source of truth. The Word export (`manuscript/draft.docx`) is derived via Pandoc and is NOT edited directly — all edits happen in the `.md` files.
 
 ```
-manuscript/00_metadata.md        → title, authors, affiliations
-manuscript/01_abstract.md        → [YOUR ABSTRACT WORD LIMIT]
-manuscript/02_introduction.md    → introduction
-manuscript/03_materials_methods.md → methods
+manuscript/00_metadata.md           → title, authors, affiliations
+manuscript/01_abstract.md           → abstract (~200-300 words)
+manuscript/02_introduction.md       → introduction
+manuscript/03_materials_methods.md  → methods
 manuscript/04_results_discussion.md → results & discussion
-manuscript/05_conclusions.md     → conclusions (if separate section)
-manuscript/06_cover_letter.md    → cover letter for [YOUR JOURNAL]
+manuscript/05_conclusions.md        → conclusions
+manuscript/06_cover_letter.md       → cover letter for WES
+manuscript/07_data_availability.md  → code and data availability (WES required)
 manuscript/08_supporting_information.md → SI content
 ```
 
@@ -27,68 +30,80 @@ manuscript/08_supporting_information.md → SI content
 ```bash
 pandoc manuscript/01_abstract.md manuscript/02_introduction.md \
   manuscript/03_materials_methods.md manuscript/04_results_discussion.md \
-  manuscript/05_conclusions.md -o manuscript/draft.docx
+  manuscript/05_conclusions.md manuscript/07_data_availability.md \
+  -o manuscript/draft.docx
 ```
 
 ---
 
-## [YOUR JOURNAL] Format Requirements
+## Role Constraint
 
-<!-- Fill in your target journal's specific requirements -->
-- **Article type:** [YOUR ARTICLE TYPE]
-- **Body word count:** [YOUR LIMIT]
-- **Abstract:** [YOUR LIMIT] (unstructured/structured?)
-- **Keywords:** [REQUIRED? HOW MANY?]
-- **Figures + Tables:** [LIMITS?]
-- **Citation style:** [YOUR STYLE] (e.g., ACS numbered superscripts, APA author-year)
-- **Figure submission format:** [FORMAT, DPI]
-- **Data availability:** [REQUIRED?]
-- **Abbreviations:** [RULES]
+**Claude edits/revises existing prose and debugs code — Claude does NOT generate new prose from scratch as first pass.** The user writes first drafts; Claude refines, restructures, and improves them. This ensures the user's voice and domain expertise drive the narrative.
+
+Exceptions:
+- Boilerplate sections (data availability, author contributions) may be drafted by Claude
+- Code comments and documentation may be written by Claude
+- Outline/structure suggestions are fine — but full paragraph generation requires user's first draft
 
 ---
 
-## Citation Format
+## Wind Energy Science Format Requirements
 
-<!-- Customize for your citation style -->
-- In text: [YOUR FORMAT] (e.g., `[1]`, `[2,3]` for numbered; `(Smith et al., 2020)` for author-year)
-- In `Bibliography_base.bib`: key format `AuthorYYYY_keyword` (e.g., `Smith2020_methodology`)
-- [ANY ADDITIONAL RULES]
+- **Article type:** Research Article
+- **Body word count:** No strict limit (typical: 6000-10000 words)
+- **Abstract:** ~200-300 words (unstructured)
+- **Keywords:** [ASK USER — typically 4-8]
+- **Figures + Tables:** No strict limit
+- **Citation style:** Copernicus author-year — `Smith et al. (2020)` or `(Smith et al., 2020)`
+- **Figure submission format:** PDF, PNG, or EPS; min 300 DPI for raster
+- **Data availability:** **Required** — Code and Data Availability section
+- **AI disclosure:** **Required** — must disclose AI tool usage
+- **License:** CC BY 4.0 (open access, mandatory)
+- **Formatting details:** [ASK USER — specific preferences]
+
+---
+
+## Citation Format (Zotero-First)
+
+- In text: `Smith et al. (2020)` (narrative) or `(Smith et al., 2020)` (parenthetical)
+- In Markdown: `[@Smith2020]` or `[@Smith2020; @Jones2021]` for Pandoc
+- In `Bibliography_base.bib`: managed via Zotero export only — see `.claude/rules/zotero-citation-workflow.md`
+- **Never add entries to .bib directly** — flag missing refs for user to add via Zotero
 
 ---
 
 ## Unit Conventions
 
-<!-- Replace with your field's unit conventions -->
-
 | Quantity | Preferred Unit | Notes |
 |---------|---------------|-------|
-| [QUANTITY 1] | [UNIT] | [NOTES] |
-| [QUANTITY 2] | [UNIT] | [NOTES] |
-| [QUANTITY 3] | [UNIT] | [NOTES] |
+| [ASK USER] | | |
 
 ---
 
 ## Writing Style
 
-- **Voice:** Active voice preferred (past tense for experimental descriptions)
-  - Good: "We measured..."
-  - Bad: "...was measured..."
-- **Precision:** Every quantitative claim must include the value, units, and n= or uncertainty
+- **Voice:** Active voice preferred (past tense for methods/results)
+  - Good: "We simulated..."
+  - Bad: "...was simulated..."
+- **Precision:** Every quantitative claim must include the value, units, and uncertainty where applicable
 - **No overclaiming:** Limitations must be stated; do not generalize beyond tested conditions
-- **Concision:** [YOUR JOURNAL] audience is expert; define terms once, not repeatedly
+- **Concision:** WES audience is expert; define terms once, not repeatedly
 
 ---
 
 ## Supplementary Information (SI) Conventions
 
 Items that belong in SI (not main text):
-- Raw data tables with all replicates
-- Calibration curves and QA/QC data
-- Extended statistical outputs beyond summary statistics
-- [ADD YOUR FIELD-SPECIFIC SI ITEMS]
+- Extended sensitivity analysis tables
+- Grid convergence details beyond summary
+- Additional validation cases
+- Raw data tables
+- [ASK USER — field-specific SI items]
 
 Items that must stay in main text:
-- [YOUR FIELD-SPECIFIC MAIN TEXT REQUIREMENTS]
+- Primary results and key comparisons
+- Main validation case
+- [ASK USER — field-specific main text requirements]
 
 ---
 
@@ -96,9 +111,9 @@ Items that must stay in main text:
 
 | Task | Tool | Claude's Role |
 |------|------|--------------|
-| Final publication figures | **[YOUR TOOL]** (user) | Analysis and interpretation ONLY; never generate figures |
-| Intermediate data | **[YOUR TOOL]** (user) | Verify calculations; extract values into manuscript |
-| Scripting / automation | **Python** | Write and run scripts on request |
+| Final publication figures | **[ASK USER]** (user) | Analysis and interpretation ONLY; never generate figures |
+| Data processing | **[ASK USER]** (user) | Verify calculations; extract values into manuscript |
+| Scripting / automation | **[ASK USER]** | Write and run scripts on request |
 | Word export | **Pandoc** | `pandoc manuscript/*.md -o manuscript/draft.docx` |
 | Version control | **Git** | Standard `/commit` workflow |
 
@@ -108,19 +123,18 @@ Items that must stay in main text:
 
 ## Data Ingestion Protocols
 
-### Lab Notebook / ELN PDFs
-1. User provides PDF pages from lab notebook
-2. Read using `pdf-processing.md` rule: max 5 pages per chunk, one chunk at a time
-3. Extract experimental conditions, observations, and raw data into a structured Markdown table
-4. Save extracted data to `quality_reports/data_verification/YYYY-MM-DD_eln_[experiment].md`
-5. Use extracted table as input for Methods drafting — do not transcribe directly without structuring
-
 ### Calculation Spreadsheets
-1. User provides Excel spreadsheet
+1. User provides spreadsheet
 2. **Independently re-derive every key calculation** from raw data (do not trust existing formulas)
 3. Flag any discrepancies between spreadsheet values and re-derived values
 4. Document verified values in `quality_reports/data_verification/YYYY-MM-DD_spreadsheet_[name].md`
 5. Only use verified values in manuscript — if discrepancy is unresolved, ask the user
+
+### LES / Simulation Data
+1. Data resides in the LES repo (read-only — see multi-repo-workflow rule)
+2. Extract relevant statistics via scripts in the analysis repo
+3. Document data provenance: simulation case name, grid resolution, averaging period
+4. Cross-check extracted values against user's Obsidian notes where available
 
 ---
 

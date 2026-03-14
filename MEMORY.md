@@ -1,4 +1,3 @@
 # Memory Index
 
-<!-- Add memory file references here as you accumulate learnings -->
-<!-- Format: - [filename.md](filename.md) — Brief description -->
+- [project_init.md](project_init.md) — Project identity and target journal
