@@ -6,9 +6,13 @@ paths:
   - "explorations/**"
 ---
 
-# Project Knowledge Base: KH Wake Modeling
+# Project Knowledge Base: NLR Director's Fellowship Proposal — Tidal Array Hydrokinetic Energy
 
-Read this before creating or modifying any manuscript content, figures, or analysis scripts.
+Read this before creating or modifying any proposal content, figures, or analysis scripts.
+
+**Domain:** Tidal/hydrokinetic energy extraction, LES of confined channel flows, rotor-wake interactions, blockage effects.
+**Simulation stack:** ExaWind (AMR-Wind, Nalu-Wind), Python post-processing. Kirby's PhD background: Fortran-based atmospheric LES.
+**Key collaborators:** Hannah Ross (blockage), Mike Sprague (HPC), Jason Jonkman (rotor dynamics).
 
 ---
 
