@@ -4,8 +4,8 @@
 
 **Author:** Kirby Heck
 **Current Institution:** Massachusetts Institute of Technology
-**Department:** [TBD — e.g., Mechanical Engineering / AeroAstro]
-**Email:** [TBD]
+**Department:** Civil and Environmental Engineering
+**Email:** kheck@mit.edu
 
 **Target Fellowship:** NLR Director's Fellowship
 **Target Laboratory:** National Laboratory of the Rockies (NLR), formerly NREL
