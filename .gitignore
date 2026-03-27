@@ -68,4 +68,4 @@ CLAUDE.local.md
 # output/**/*.rds
 
 # Paper pdfs
-./papers/*.pdf
+papers/pdfs/*.pdf
